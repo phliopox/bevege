@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="/refactor/layout/defaultLayout">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <th:block layout:fragment="css">
+        <link rel="stylesheet" href="/css/board.css/?after">
+    </th:block>
+</head>
+<body>
+<th:block layout:fragment="content">
+    <div class="under_nav">
+        <div class="detail">
+            <section class="post">
+                <input id="postId" th:value="${post.board_id}" hidden>
+                <h3 th:field="${post.postTitle}" th:text="${post.postTitle}"></h3>
+                <hr>
+                <textarea class="post_content" name="${post.content}" value="${post.content}" th:text="${post.content}" readonly></textarea>
+            </section>
+
+            <section class="writer_info">
+                <p th:field="${post.memberId}" th:text="|Post Writer : ${post.memberId}|"></p>
+                <div class="writer_info_section_btn">
+                    <form method="get" onsubmit="return deletePost()" th:action="@{/board/delete/{board_id}(board_id=${post.board_id})}">
+                        <button type="button" th:onclick="|location.href='@{/board?pageIndex={pageNum}(pageNum=${pageNum})}'|">목록으로</button>
+                        <button type="button" th:if="${canEdit}!=null"
+                                th:onclick="|location.href='@{/board/editPost/{pageNum}/{board_id}(pageNum=${pageNum},board_id=${post.board_id})}'|">글 수정하기</button>
+                        <button id="delete_btn" type="submit"  th:if="${canEdit}!=null" >삭제하기</button>
+                    </form>
+                </div>
+                <hr>
+            </section>
+
+            <section id="reply_section">
+                <h6>댓글</h6>
+                <input type="number" id="pageNum" th:value="${pageNum}" hidden>
+                <div th:each="reply,replyStat:${replies}">
+                    <ul th:class="${reply.reply_id}">
+                        <hr>
+                        <li class="reply_writer" th:name="${reply.writer}" th:text="|ID : ${reply.writer}|"
+                            style="font-weight:700; font-size:13px;"></li>
+                        <li  style="white-space:pre;" class="reply_content" th:name="${reply.content}" th:text="${reply.content}"></li>
+                        <li  th:field="${reply.regDate}" th:text="${reply.regDate}"
+                            style="font-size:9px; color:#757575;"></li>
+                        <div class="a_display" th:if="${#strings.equals(reply.writer,session.LoginSession)}">
+                            <a th:id="${reply.reply_id}" type="button" onclick="updateReply(this)">수정 | </a>
+                            <a th:id="${reply.reply_id}" type="button" onclick="confirm('댓글을 삭제하시겠습니까?')?deleteCmt(this):false">삭제</a>
+                        </div>
+                    </ul>
+                    <hr>
+                </div>
+
+                <div class="input_table">
+                    <form action="" th:action th:object="${reply}" method="post">
+                        <textarea type="text" name="content" th:errorclass="field-error"></textarea>
+                        <button type="submit">입력</button>
+                        <div class="field-error" th:errors="${reply.content}"></div>
+                        <div th:if="${#fields.hasGlobalErrors()}">
+                            <p class="field-error" th:each="err:${#fields.globalErrors()}" th:text="${err}"></p>
+                        </div>
+                    </form>
+                </div>
+            </section>
+        </div>
+    </div>
+    <script type="text/javascript" src="/js/postDetail.js"></script>
+</th:block>
+</body>
+</html>

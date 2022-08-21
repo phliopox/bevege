@@ -1,0 +1,65 @@
+@import url('https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Noto+Serif+KR&display=swap');
+/*number 화살표 제거*/
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+body{
+    font-family:'Black Han Sans',sans-serif;
+    font-family:'Noto Serif KR',serif;
+}
+
+table{
+    margin-left:auto;
+    margin-right:auto;
+    background:#f6f6f6;
+    border-radius:1rem;
+}
+
+table td,th{
+    padding:40px;
+}
+table input,textarea{
+    width:100%
+}
+table textarea{
+    height:200px;
+}
+#under_nav{
+    margin:80px;
+}
+h3{
+    margin:30px;
+    text-align:center;
+}
+
+
+.empty{
+    display: flex;
+    align-items: center;
+    margin-top:50px;
+    margin-bottom:50px;
+    border:1px solid grey;
+    border-radius: 30px;
+    height:200px;
+}
+.empty h4{ width: 100%;padding: 20px 0px;text-align: center;color:gray;}
+
+#orderSearch{
+    margin-bottom:50px;
+    width:80%;
+    margin-left:10%;
+}
+#orderSearch input{
+    margin-left:15px;
+
+}
+#orderSearch button:nth-child(3){
+    width:100px;
+    margin-right:10px;
+}
+#orderSearch button:nth-child(4){
+    width:150px;
+}

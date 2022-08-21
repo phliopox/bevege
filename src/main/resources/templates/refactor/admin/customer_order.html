@@ -1,0 +1,69 @@
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="/refactor/layout/defaultLayout">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <th:block layout:fragment="css">
+        <link rel="stylesheet" href="/css/item_enroll.css?after">
+    </th:block>
+</head>
+<body>
+<th:block layout:fragment="content">
+    <div id="under_nav" class="page-add cart-page-add" style="min-height:400px;">
+        <div class="container" style="text-align: center; margin-top:10%;">
+            <form id="orderSearch" class="d-flex" role="search" action="/admin/customer-order/search" method="get">
+                <select name="category">
+                    <option value="order_status">주문상태</option>
+                    <option value="item_name">상품명</option>
+                    <option value="address">배송주소</option>
+                    <option value="member_id">주문자ID</option>
+                    <option value="reg_date">주문일자</option>
+                </select>
+                <input name="q" class="form-control me-2" type="search" placeholder="Search" aria-label="Search" autocomplete="off">
+                <button class="btn btn-secondary" type="submit" value="get">검색</button>
+                <button class="btn btn-secondary" type="button" onclick="reload()">전체목록</button>
+            </form>
+            <div th:unless="${#lists.isEmpty(orders)}">
+                <table id="orderTable" class="table table-striped table-hover">
+                    <thead>
+                    <tr>
+                        <th style="width:5%">#</th>
+                        <th style="width:10%">주문상태</th>
+                        <th style="width:20%">상품명</th>
+                        <th style="width:25%">배송주소</th>
+                        <th style="width:10%">결제금액</th>
+                        <th style="width:10%">주문자 ID</th>
+                        <th style="width:10%">주문일자</th>
+                        <th style="width:10%">주문관리</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="order,num:${orders}" style="cursor:pointer;">
+                        <th th:text="${num.count}"></th>
+                        <td class="orderStatus" th:text="${order.orderStatus}"></td>
+                        <td th:text="${order.itemName}"></td>
+                        <td th:text="${order.address}"></td>
+                        <td class='comma' th:text="${order.orderPrice}"></td>
+                        <td th:text="${order.memberId}"></td>
+                        <td th:text="${order.regDate}"></td>
+                        <td><button th:unless="${#strings.equals(order.orderStatus,'주문취소')}" class="controlBtn btn btn-outline-dark" type="button" >상태 변경</button>
+                        <input class="orderId" type="number" th:value="${order.orderId}" hidden></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div th:if="${#lists.isEmpty(orders)}">
+                <div th:unless="${search}" class="empty">
+                    <h4> 주문하신 상품이 없습니다. </h4>
+                </div>
+                <div th:if="${search}" class="empty">
+                    <h4> 검색하신 주문기록이 없습니다. </h4>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript" src="/js/admin_order.js"></script>
+</th:block>
+</body>
+</html>

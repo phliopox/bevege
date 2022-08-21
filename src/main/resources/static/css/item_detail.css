@@ -1,0 +1,70 @@
+@import url('https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Noto+Serif+KR&display=swap');
+
+body {
+    font-family:'Black Han Sans',sans-serif;
+    font-family:'Noto Serif KR',serif;
+}
+
+[contenteditable]:focus {
+    outline: 0px solid transparent;
+}
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+    transition: background-color 5000s; -webkit-text-fill-color: #fff !important;
+}
+.item_detail input{border:none;}
+input:focus {outline: none;}
+
+/*number 화살표 제거*/
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.item_detail textarea{
+    resize: none;
+    border: none;
+}
+.item_detail textarea:focus{outline:none;}
+
+h1{margin-bottom:30px;}
+#content_img{width:900px; margin:50px;}
+#content_img div{text-align:center;}
+#itemDescription{
+    border-bottom:1px solid gray;
+    border-top:1px solid gray;
+    text-align:center;
+    font-size:15px;
+    width:400px;
+}
+textarea{
+    padding-top:20px;
+}
+.contentBlock p{
+    margin:0;
+}
+.reviewList{
+    margin-top:50px;
+    margin-bottom:50px;
+    width:430px;
+    margin-left:10px;
+}
+.reviewList td{
+    padding:5px;
+    border: 1px solid black;
+    border-left:none ;
+    border-right: none;
+
+}
+#valueJs img{
+    width:80%;}
+#valueJs {
+    width:80%;
+    font-size: 15px;
+    margin-top:20px;
+    border:1px solid black;
+    padding:10px;
+}

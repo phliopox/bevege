@@ -1,0 +1,64 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="/refactor/layout/defaultLayout">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <th:block layout:fragment="css">
+        <script type="text/javascript" src="/js/number_comma.js"></script>
+        <link rel="stylesheet" href="/css/accountStyle.css?after">
+    </th:block>
+</head>
+<body>
+<th:block layout:fragment="content">
+    <form class="under_nav" action="" th:action th:object="${member}" method="post">
+        <div th:if="${message}!=null" th:class="home_section">
+            <p th:class="field-error" th:text="${message}"></p>
+            <div th:class="btn_area">
+                <button type="button" th:onclick="|location.href='@{/create_account}'|">계좌 생성하기</button>
+                <button type="button" th:onclick="|location.href='@{/}'|">홈으로</button>
+            </div>
+        </div>
+        <div th:if="${message}==null" class="account_section">
+            <h1>계좌이체</h1>
+            <table>
+                <input type="text" id="memberId" th:field="*{memberId}" hidden>
+                <tr>
+                    <td><name for="accountId">Account ID :</name></td>
+                    <td><input type="text" id="accountId" th:field="*{accountId}" readonly></td>
+                </tr>
+                <tr>
+                    <td><name for="money">현재 잔액 :</name></td>
+                    <td> <label for="money">원</label>
+                        <input class="comma" type="text" id="money" th:field="*{money}" readonly></td>
+                </tr>
+                <tr>
+                    <td><name for="receiverAccountId">이체 계좌 ID :</name></td>
+                    <td><input type="text" id="receiverAccountId" th:field="*{receiverAccountId}" th:errorclass="field-error">
+                        <div class="field-error" th:errors="*{receiverAccountId}"></div></td>
+                </tr>
+                <tr>
+                    <td><name for="sendMoney">이체 금액 :</name></td>
+                    <td><label for="money">원</label>
+                        <input type="number" id="sendMoney" th:field="*{sendMoney}" th:errorclass="field-error">
+                        <div class="field-error" th:errors="*{sendMoney}"></div>
+                    </td>
+                </tr>
+                <tr>
+                    <td><name for="accountPw">계좌 비밀번호 :</name></td>
+                    <td><input class="input-number-password" type="number" name="accountPw" id="accountPw" th:errorclass="field-error" required>
+                        <div class="field-error" th:errors="*{accountPw}"></div>
+                    </td>
+                </tr>
+            </table>
+            <div th:if="${#fields.hasGlobalErrors()}">
+                <p class="field-error" th:each="err:${#fields.globalErrors()}" th:text="${err}"></p>
+            </div>
+            <button type="submit">이체</button>
+            <button type="button" th:onclick="|location.href='@{/my_account}'|">취소</button>
+        </div>
+    </form>
+</th:block>
+</body>
+</html>

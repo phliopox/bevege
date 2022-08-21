@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="/refactor/layout/defaultLayout">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <th:block layout:fragment="css">
+        <link rel="stylesheet" href="/css/board.css/?after">
+    </th:block>
+</head>
+<body>
+
+<th:block layout:fragment="content">
+    <form action="" th:action method="post">
+        <div class="under_nav">
+            <div class="detail">
+                <section class="edit">
+                    <input class="title" th:errorclass="field-error" th:field="${post.postTitle}" th:value="${post.postTitle}">
+                    <div class="field-error" th:errors="${post.postTitle}"></div>
+                    <hr>
+                    <textarea class="post_content" th:errorclass="field-error" th:field="${post.content}" th:value="${post.content}"></textarea>
+                    <div class="field-error" th:errors="${post.content}"></div>
+                    <div class="edit_btn">
+                        <button type="button" th:onclick="|location.href='@{/board/{pageNum}/{board_id}(board_id=${post.board_id},pageNum=${pageNum})}'|">취소하기</button>
+                        <button type="submit">저장하기</button>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </form>
+</th:block>
+</body>
+</html>

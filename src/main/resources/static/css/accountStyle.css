@@ -1,0 +1,127 @@
+@import url('https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Noto+Serif+KR&display=swap');
+
+/*number 화살표 제거*/
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+.input-number-password {
+    -webkit-text-security: disc;
+}
+.field-error{
+    font-size:15px;
+    color:#dc3545;
+    border-color:#dc3545;
+}
+*{margin: 0px; padding: 0px; box-sizing: border-box;}
+
+nav{
+    /*
+    position:position;
+    */
+    z-index:2;
+    top:0; left:0; right:0;
+
+}
+
+body::before{
+    content:"";
+    position:absolute;
+    height:108.5vh;
+    z-index: 1;
+    top:0; right:0; bottom:0; left:0;
+    background-color:rgba(0,0,0,0.7);
+
+}
+
+body{
+    font-family:'Black Han Sans',sans-serif;
+    font-family:'Noto Serif KR',serif;
+}
+
+.under_nav{
+    display:flex;
+    justify-content:center;
+    background: url("../image/cabbage.jpg") no-repeat center;
+    align-items: center;
+    height:100vh;
+    background-size:cover;
+
+}
+
+.account_section{
+    position:relative;
+    z-index:2;
+    text-align:center;
+}
+
+.account_section h1{font-size: 30px; color: white; margin-bottom: 60px;}
+.account_section table{ width:500px; height:100px; border:1px solid white; margin-bottom:10px;}
+.account_section table td{padding:15px; border-bottom:1px solid white;}
+.account_section td name{font-size:20px; color:white; text-align:center;}
+.account_section td input {width:200px; height:30px; font-size:19px; text-align:center;}
+.account_section td label{position: absolute; right:55px; font-size: 18px; color:#999; transition: all .5s ease;}
+.account_section button{
+        width:70%;
+        border: none;
+        height: 35px;
+        background-color: #166cea;
+        color: #fff;
+        border-radius: 10px;
+        font-size: 17px;
+        cursor: pointer;
+        margin-top: 10px;
+}
+
+.account_area{
+    width:300px;
+    position:relative;
+    margin-top:20px;
+    color:black;
+}
+
+.account_area label{
+    position: absolute; left:20px; /*top:15;*/
+    font-size: 15px; color:#999;
+    transition: all .5s ease;
+}
+
+.account_area:first-child{margin-top: 0;}
+.account_area input{
+    width:300px;
+    height:50px;
+    padding:20px 10px 10px;
+    background-color:white;
+    border:none;
+    font-size: 22px;
+    outline:none;
+    text-align: center;
+
+}
+.input-number-password {
+    margin-bottom:10px;
+    -webkit-text-security: disc;
+}
+
+
+
+.home_section{
+    position:relative;
+    z-index:2;
+    width:300px;
+    margin: auto ;
+}
+
+.btn_area button{
+    width:100%;
+    border: none;
+    height: 35px;
+    background-color: #125634;
+    color: #fff;
+    border-radius: 20px;
+    font-size: 17px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+

@@ -1,0 +1,27 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="/refactor/layout/defaultLayout">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<!--    개별적인 css-->
+    <th:block layout:fragment="css">
+        <link rel="stylesheet" href="/css/homeStyle.css?after">
+        <script type="text/javascript" src="/js/number_comma.js"></script>
+    </th:block>
+</head>
+<body>
+<th:block layout:fragment="content">
+<div class="under_nav">
+        <section class="home_section" >
+            <div class="btn_area">
+            <button type="button" th:onclick="|location.href='@{/join-us}'|">가입</button>
+            <button type="button" th:onclick="|location.href='@{/login}'|">로그인</button>
+            </div>
+        </section>
+    </div>
+    <section th:replace="~{/refactor/fragment/relativeItem :: relativeItemFragment}"></section>
+</th:block>
+</body>
+</html>

@@ -1,0 +1,51 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="/refactor/layout/defaultLayout">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <th:block layout:fragment="css">
+    <link rel="stylesheet" href="/css/board.css?after">
+    </th:block>
+</head>
+<body>
+    <th:block layout:fragment="content">
+        <div id="under_nav"class="under_nav">
+            <section class="board_table">
+                <div class="new_post_btn">
+                    <button type="button" th:onclick="|location.href='@{/board/new_post}'|">글쓰기</button>
+                </div>
+                <table id="board_table" class="table table-striped table-hover">
+                    <thead>
+                    <tr>
+                        <th style="width:10%">#</th>
+                        <th style="width:50%">title</th>
+                        <th style="width:20%">writer</th>
+                        <th style="width:20%">date</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="post,num:${posts}" style="cursor:pointer;"
+                            th:onclick="|location.href='@{/board/{pageNum}/{board_id}(board_id=${post.board_id},pageNum=${pageList.pageNum})}'|">
+                            <th th:field="count"  th:text="${num.count}"></th>
+                            <td th:field="post.postTitle"  th:text="${post.postTitle}"></td>
+                            <td th:field="post.memberId"  th:text="${post.memberId}"></td>
+                            <td th:field="post.regDate"  th:text="${post.regDate}"></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <input id="startPage" th:field="${pageList.startPage}" hidden>
+                <input id="endPage" th:field="${pageList.endPage}" hidden>
+                <input id="prev" th:field="${pageList.prev}" hidden>
+                <input id="next" th:field="${pageList.next}" hidden>
+                <input id="pageNum" th:field="${pageList.pageNum}" hidden>
+                <div id="pageMarker">
+                </div>
+                <hr>
+            </section>
+        </div>
+        <script type="text/javascript" src="/js/paging.js"></script>
+    </th:block>
+</body>
+</html>

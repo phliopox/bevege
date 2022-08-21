@@ -1,0 +1,48 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf/org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="/refactor/layout/defaultLayout">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <th:block layout:fragment="css">
+        <script type="text/javascript" src="/js/number_comma.js"></script>
+        <link rel="stylesheet" href="/css/accountStyle.css?after">
+    </th:block>
+</head>
+<body>
+<th:block layout:fragment="content">
+    <section class="under_nav">
+        <div th:if="${message}!=null" class="home_section">
+            <p th:class="field-error" th:text="${message}"></p>
+            <div th:class="btn_area">
+                <button type="button" th:onclick="|location.href='@{/create_account}'|">계좌 생성하기</button>
+                <button type="button" th:onclick="|location.href='@{/}'|">홈으로</button>
+            </div>
+        </div>
+        <div th:if="${message}==null" class="account_section">
+        <h1 th:text="|${member.memberId}님의 계좌|"></h1>
+        <table>
+            <tr>
+                <td><name for="accountId">Account ID :</name></td>
+                <td><input id="accountId" name="accountId" th:value="${member.accountId}" readonly></td>
+            </tr>
+            <tr>
+                <td><name for="money">현재 잔액 :</name></td>
+                <td>
+                    <label for="money">원</label>
+                    <input class="comma" type="text" name="money" id="money" th:value="${member.money}" readonly>
+                </td>
+            </tr>
+        </table>
+            <div th:if="${status}" style="color:white;">
+                <p th:text="|계좌이체가 거래가 완료되었습니다.|"></p>
+            </div>
+            <button type="button" th:onclick="|location.href='@{/}'|">HOME</button>
+            <button type="button" th:onclick="|location.href='@{/my_account/transfer}'|">계좌이체</button>
+            <button type="button" th:onclick="|location.href='@{/my_account/point_to_money}'|">포인트 현금전환</button>
+        </div>
+    </section>
+</th:block>
+</body>
+</html>

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf/org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="/refactor/layout/defaultLayout">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <th:block layout:fragment="css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css" integrity="sha512-1sCRPdkRXhBV2PBLUdRb4tMg1w2YPf37qatUFeS7zlBy7jJI8Lf4VHwWfZZfpXtYSLy85pkm9GaYVYMfw5BC1A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+        <link rel="stylesheet" href="/css/cart.css?after">
+    </th:block>
+</head>
+<body>
+<th:block layout:fragment="content">
+
+   <!-- 포인트
+    장바구니, 주문상태 조회 , 구매후기-->
+    <section id="cart_section" class="page-add cart-page-add">
+        <div class="container">
+            <div class="pageName col-lg-6">
+                <div class="page-breadcrumb">
+                    <h2>My Cart</h2>
+                </div>
+            </div>
+            <div id="list_section">
+                <div th:unless="${#lists.isEmpty(itemList)}">
+                    <div class="col-lg-10 offset-lg-1 text-left text-lg-right row" style="padding-top: 34px;">
+                        <div class="th col-md-2">#</div>
+                        <div class="th col-md-5">상품</div>
+                        <div class="th col-md-1">수량</div>
+                        <div class="th col-md-3">합계</div>
+                        <div class="th col-md-1"></div>
+                        <div th:each="item:${itemList}">
+                            <div>
+                                <div class="cart_item row align-items-center" name="cartItem" >
+                                    <div class="col-md-1">
+                                        <input class="checkBox" type="checkbox" checked >
+                                    </div>
+                                    <div class="col-md-3" align="center">
+                                        <img th:src="|/images/${item.getStoreMainImageFileName()}|" style="width:100%">
+                                    </div>
+                                    <div class="col-md-3">
+                                        <input type="text" id="itemName" th:name="${item.itemName}" th:value="${item.itemName}" readonly>
+                                        <p th:text="${item.itemDescription}"></p>
+                                        <input type="text" class="comma price" th:name="${item.price}" th:value="${item.price}" style="width: 50px;" readonly>원
+                                    </div>
+                                    <div class="col-md-2">
+                                        <input type="number" class="orderAmount" th:name="${item.amount}" th:value="${item.amount}" style="width: 50px;" readonly>
+                                        <input type="number" class="itemId" th:value="${item.itemId}" hidden>
+                                        <button  class="amount_up btn btn-outline-dark btn-sm" onclick="orderAmountUp(this)"><i class="fa-solid fa-angle-up"></i></button>
+                                        <button  class="amount_down btn btn-outline-dark btn-sm" onclick="orderAmountDown(this)"><i class="fa-solid fa-angle-down"></i></button>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <input class="comma resultPrice" th:value="${item.amount}*${item.price}">
+                                    </div>
+                                    <div class="col-md-1">
+                                        <label>
+                                            <input type="number" class="itemId" th:value="${item.itemId}" hidden>
+                                        </label>
+                                        <button class="delete_btn" onclick="deleteOneItem(this)"><i class="fa-solid fa-xmark"></i></button>
+                                    </div>
+                                </div>
+                                <hr>
+                            </div>
+                        </div>
+                        <button class="col-md-2 btn btn-outline-dark" style="margin-right: 10px;" onclick="allSelected()">전체 선택</button>
+                        <button class="col-md-2 btn btn-outline-dark" onclick="selectedDelete()">선택 삭제</button>
+                    </div>
+                </div>
+            </div>
+            <section id="order_btn" class="page-add cart-page-add" th:unless="${#lists.isEmpty(itemList)}">
+                <div class="container px-4 px-lg-5 my-5">
+                        <div class="row">
+                            <label for="selectedItemSum" style="margin-left:70%; width: 150px; font-size: 20px; font-weight: bold;">총 합계</label>
+                            <input class="comma" style="width:100px;font-size:20px;"id="selectedItemSum" value="" readonly>
+                        </div>
+                        <button class="col-md-3 btn btn-dark" style="margin-left:70%; margin-top:25px;"
+                        onclick="payment()">주문하기</button>
+                    </div>
+            </section>
+            <section id="orderPage" ></section>
+            <div th:if="${#lists.isEmpty(itemList)}">
+                <div id="empty">
+                    <h4> 장바구니가 비어있습니다.</h4>
+                </div>
+            </div>
+        </div>
+    </section>
+    <script type="text/javascript" src="/js/my_page_cart.js"></script>
+    <script type="text/javascript" src="/js/orderItem.js"></script>
+    <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+</th:block>
+</body>
+</html>

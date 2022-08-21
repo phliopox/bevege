@@ -1,0 +1,57 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="/refactor/layout/defaultLayout">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <th:block layout:fragment="css">
+        <link rel="stylesheet" href="/css/homeStyle.css?after">
+    </th:block>
+</head>
+<body>
+<th:block layout:fragment="content">
+<form class="under_nav" action="" th:action th:object="${member}" method="post">
+        <section class="login-form">
+            <h1>Login</h1>
+
+            <div class="int_area">
+                <label for="memberId">ID</label>
+                <input type="text" id="memberId" th:field="*{memberId}" th:errorclasss="field-error">
+                <div class="field-error" th:errors="*{memberId}">ID 오류</div>
+            </div>
+
+            <div class="int_area">
+                <label for="memberPw">PW</label>
+                <input class="input-number-password" type="text" id="memberPw" th:field="*{memberPw}" th:errorclass="field-error">
+                <div class="field-error" th:errors="*{memberPw}">PW 오류</div>
+            </div>
+            <div th:if="${#fields.hasGlobalErrors()}">
+                <p class="field-error" th:each="err:${#fields.globalErrors()}"
+                   th:text="${err}">전체 오류 메세지</p>
+            </div>
+            <section class="home_section">
+                <div class="btn_area">
+                    <button type="button" th:onclick="|location.href='@{/}'|">BACK</button>
+                    <button type="submit">LOGIN</button>
+                </div>
+            </section>
+        </section>
+    </form>
+    <script>
+        window.onload = function () {
+            if($('.int_area input').val()!=''){
+                $('.int_area label').css("top","0px");
+                $('.int_area label').css("font-size","10px");
+                $('.int_area label').css("color","white");
+            }
+            $('.int_area input').focus(function(e){
+                $('.int_area label').css("top","0px");
+                $('.int_area label').css("font-size","10px");
+                $('.int_area label').css("color","white");
+            });
+        };
+    </script>
+</th:block>
+</body>
+</html>

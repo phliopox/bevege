@@ -1,0 +1,59 @@
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="/refactor/layout/defaultLayout">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <th:block layout:fragment="css">
+      <link rel="stylesheet" href="/css/item_enroll.css?after">
+  </th:block>
+</head>
+<body>
+  <th:block layout:fragment="content">
+      <div id="under_nav" class="page-add cart-page-add">
+          <div class="container">
+              <form enctype="multipart/form-data" method="post" >
+                  <h3>상품 수정</h3>
+                  <table>
+                      <tr>
+                          <th>
+                              <label for="itemName">상품명</label>
+                          </th>
+                          <td>
+                              <input type="text" id="itemName" name="itemName" th:value="${item.itemName}" required>
+                          </td>
+                      </tr>
+                      <tr>
+                          <th>
+                              <label for="itemDescription">상품 설명</label>
+                          </th>
+                          <td>
+                              <textarea type="text" id="itemDescription" name="itemDescription" th:text="${item.itemDescription}" required></textarea>
+                          </td>
+                      </tr>
+                      <tr>
+                          <th>
+                              <label for="price">가격</label>
+                          </th>
+                          <td>
+                              <input type="number" id="price" name="price" th:value="${item.price}" required>
+                          </td>
+                      </tr>
+                      <tr id="imageEditBtn">
+                          <td colspan="2" style="text-align: center">
+                              <button type="button" class="btn btn-secondary" onclick="imageEdit()">상품 이미지 수정</button>
+                          </td>
+                      </tr>
+                      <tr>
+                          <td colspan="2" style="text-align: center">
+                              <button type="submit" class="btn btn-outline-dark">상품 정보 수정</button>
+                          </td>
+                      </tr>
+                  </table>
+              </form>
+          </div>
+      </div>
+      <script type="text/javascript" src="/js/edit_item.js"></script>
+  </th:block>
+</body>
+</html>

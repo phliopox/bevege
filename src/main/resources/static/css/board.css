@@ -1,0 +1,68 @@
+@import url('https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Noto+Serif+KR&display=swap');
+
+
+.input-number-password { -webkit-text-security: disc;}
+.field-error{font-size:15px; color:#dc3545; border-color:#dc3545;}
+
+*{margin: 0px; padding: 0px; /*box-sizing: border-box;*/}
+
+textarea{
+    resize: none;
+}
+
+nav{/*position:position;*/ /*z-index:2;*/ top:0; left:0; right:0;}
+body{
+    font-family:'Black Han Sans',sans-serif;
+    font-family:'Noto Serif KR',serif;
+}
+
+.under_nav {
+     display:flex;
+     justify-content:center;
+    /* height:200vh;*/
+     height:auto;
+}
+.new_post_btn{ margin-left:95%; margin-bottom:10px;}
+.new_post_btn button{ width:50px; height:30px; border:none; background-color:#dcdcdc; border-radius:0.5em; font-size:15px;}
+.board_table{margin-top:30px; margin-bottom:50px; width:80%; height:30%; min-height:500px; padding:100px; }
+.board_table tr {height:15px;}
+#pageMarker {padding:5px; margin-top:20px; margin-bottom:5px; height:50px; /*border-bottom: solid gray 0.5px;*/ }
+#page_list{text-align:center;}
+#page_list li{ list-style: none; padding: 6px; display:inline-block;}
+#pageMarker .active{ border-bottom: black 2px solid ;}
+
+/*postDetail.html*/
+.detail{
+    width:80%;
+    height:90%;
+    border-left:1px solid gray;
+    border-right:1px solid gray;
+    padding-left:25px;
+    padding-right:25px;
+    margin-top:40px;
+}
+
+.post{height:50%;}
+.post h3{text-align:center; padding-bottom:20px;}
+.post_content{text-align:left; padding-top:20px;font-size:15px; height:80%; min-height:300px;}
+
+.writer_info{text-align:left; font-size:15px;}
+.writer_info_section_btn{display:inline; padding-left:5px;}
+.writer_info_section_btn button{width:100px; height:40px; border:none; background-color:#dcdcdc; border-radius:0.5em; font-size:15px;}
+
+#reply_section{font-size:12px; height:15%; margin-bottom:50px; }
+#reply_section ul {list-style-type:none; padding:0px;}
+#reply_section li{padding-left:10px;}
+
+.input_table{text-align:right;}
+#reply_section textarea{ width:100%; height:50px; border:1px #dcdcdc solid; border-radius:0.5em; font-size:12px;}
+#reply_section button{width:50px; height:25px; border:none; background-color:#dcdcdc; border-radius:0.5em; font-size:12px;}
+.a_display {text-align:right;}
+
+/*editPost*/
+.edit{height:90%; margin-bottom:50px;}
+.title{text-align:center;}
+.edit input,textarea{width:100%;border:none; }
+.edit input,textarea:focus{outline:none;}
+.edit_btn{ display:inline; margin-left:33%;}
+.edit_btn button{ width:150px; height:40px; border:none; background-color:#dcdcdc; border-radius:0.5em; font-size:15px;}

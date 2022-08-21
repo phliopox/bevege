@@ -1,0 +1,86 @@
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="/refactor/layout/defaultLayout">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <th:block layout:fragment="css">
+        <script type="text/javascript" src="/js/number_comma.js"></script>
+        <link rel="stylesheet" href="/css/item_detail.css?after">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css" integrity="sha512-1sCRPdkRXhBV2PBLUdRb4tMg1w2YPf37qatUFeS7zlBy7jJI8Lf4VHwWfZZfpXtYSLy85pkm9GaYVYMfw5BC1A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+        <script src="https://cdn.ckeditor.com/ckeditor5/29.1.0/classic/ckeditor.js"></script>
+    </th:block>
+</head>
+<body>
+<th:block layout:fragment="content">
+    <div class="under_nav">
+        <input id="pageNum" th:value="${pageNum}" hidden>
+        <input th:if="${session.LoginSession}!=null" id="login" th:value="true" hidden>
+        <section class="item_detail">
+            <div class="container px-4 px-lg-5 my-5" style="margin-top: 50px;">
+                <div class="row gx-4 gx-lg-5 align-items-center">
+                  <div style="margin-bottom:30px;"><button class="btn btn-outline-dark" th:onclick="|location.href='@{/store?pageIndex={pageNum}(pageNum=${pageNum})}'|"><</button></div>
+                    <div class="col-md-6"><img class="card-img-top mb-5 mb-md-0" th:src="|/images/${item.getStoreMainImageFileName()}|" alt="상품이미지" /></div>
+                    <div class="col-md-6">
+                        <h2 class="display-5 fw-bolder"><input type="text" id="itemName" th:value="${item.itemName}" style="width:100%" readonly></h2>
+                        <div class="fs-5 mb-5">
+                            <span id="beforeSale" class="text-decoration-line-through"></span>
+                            <span><input  class="comma" type="text" id="price" th:value="${item.price}"
+                                         style="width:80px; text-align:center; font-size:24px;" readonly>원</span>
+                        </div>
+                        <!--상품 상세 설명-->
+                        <textarea class="lead" id="itemDescription" th:text="${item.itemDescription}" readonly></textarea>
+
+                        <div class="d-flex" style="margin-top: 20px;">
+                            <input id="orderAmount" class="form-control text-center me-1" type="number" value="1" style="max-width: 3rem" />
+                            <button id="amount_up" class="btn btn-outline-dark btn-sm me-1" onclick="amountUp()"><i class="fa-solid fa-angle-up"></i></button>
+                            <button id="amount_down" class="btn btn-outline-dark btn-sm me-3" onclick="amountDown()"><i class="fa-solid fa-angle-down"></i></button>
+                            <button class="btn btn-outline-dark flex-shrink-0" type="button" onclick="addCart()">
+                                Add to cart
+                            </button>
+                        </div>
+                        <input id="itemId" th:field="${item.itemId}" hidden>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="container px-4 px-lg-5 my-5">
+
+            <!--구매자 리뷰-->
+            <div th:if="${orderedMember}">
+            <input id="orderedMember" type="text" th:value="${orderedMember}" hidden>
+            </div>
+            <div id="ReviewBox" class="row">
+                <button class="col-md-4 btn btn-outline-dark" style="margin-left:51%"
+                        id="review" type="button" onclick="review_board()">Reviews</button>
+            </div>
+            <div id="review_table">
+            </div>
+
+            <!--관리자 상품 관리-->
+            <div th:if="${#strings.equals('admin',session.LoginSession)}" class="btn-group dropend" style="width:10%; margin-left:75%; margin-top:15px;">
+                <button type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                    상품관리
+                </button>
+                <ul class="my-page-dropdown dropdown-menu" style="text-align: center; color:royalblue;">
+                    <!-- Dropdown menu links -->
+                    <li class="link"><p type="button" th:onclick="|location.href='@{/admin/product-edit/{itemId}(itemId=${item.itemId})}'|">정보 수정</p></li>
+                    <li class="admin_none_border link"><p type="button" onclick="deleteItem()">상품 삭제</p></li>
+                </ul>
+            </div>
+        </section>
+        <section class="py-5">
+        <div class="container px-4 px-lg-5 my-5" style="text-align: center;">
+            <img th:src="|/images/${item.getStoreContentFileName()}|" width="80%">
+        </div>
+        </section>
+
+        <!-- Related items section-->
+        <section th:replace="/refactor/fragment/relativeItem :: relativeItemFragment"></section>
+    </div>
+    <script type="text/javascript" src="/js/item_review.js"></script>
+    <script type="text/javascript" src="/js/add_cart.js"></script>
+    <script type="text/javascript" src="/js/edit_item.js"></script>
+</th:block>
+</body>
+</html>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="/refactor/layout/defaultLayout">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <th:block layout:fragment="css">
+        <script type="text/javascript" src="/js/number_comma.js"></script>
+        <link rel="stylesheet" href="/css/store_home.css?after" >
+    </th:block>
+</head>
+<body>
+  <th:block layout:fragment="content">
+      <div class="under_nav">
+          <section class="py-5 bg-light">
+              <div class="container px-4 px-lg-5 mt-5">
+                  <h2 class="fw-bolder mb-4">Be:Vege !</h2>
+
+                  <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+                      <div class="col mb-5" th:each="item:${items}">
+                          <div class="card h-100" >
+                              <!-- Product image-->
+                              <img class="card-img-top" th:src="|/images/${item.getStoreMainImageFileName()}|" alt="상품사진" />
+                              <!-- Product details-->
+                              <div class="card-body p-4">
+                                  <div class="text-center">
+                                      <!-- Product name-->
+                                      <h5 class="fw-bolder" th:text="${item.getItemName()}"></h5>
+                                      <!-- Product price-->
+                                      <input style="border: none; width:150px; font-size:18px; text-align:center;" class="comma" th:value="|${item.getPrice()} 원|" readonly>
+                                  </div>
+                              </div>
+                              <!-- Product actions-->
+                              <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                                  <div class="text-center">
+                                      <a th:unless="${search}" class="btn btn-outline-dark mt-auto"
+                                         th:onclick="|location.href='@{/items/{pageNum}/{getItemId}(getItemId=${item.getItemId()},pageNum=${pageList.pageNum})}'|">
+                                          Details</a>
+                                      <a th:if="${search}" class="btn btn-outline-dark mt-auto"
+                                         th:onclick="|location.href='@{/items/1/{getItemId}(getItemId=${item.getItemId()})}'|">
+                                          Details</a>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </section>
+          <section class="paging" th:unless="${search}">
+              <hr>
+              <input id="startPage" th:field="${pageList.startPage}" hidden>
+              <input id="endPage" th:field="${pageList.endPage}" hidden>
+              <input id="prev" th:field="${pageList.prev}" hidden>
+              <input id="next" th:field="${pageList.next}" hidden>
+              <input id="pageNum" th:field="${pageList.pageNum}" hidden>
+              <div id="pageMarker">
+              </div>
+          </section>
+          <script type="text/javascript" src="/js/paging.js"></script>
+      </div>
+  </th:block>
+</body>
+</html>

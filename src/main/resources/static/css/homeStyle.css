@@ -1,0 +1,173 @@
+@import url('https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Noto+Serif+KR&display=swap');
+
+/*input 자동완성 입력 background 투명 처리*/
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+    transition: background-color 5000s; -webkit-text-fill-color: #fff !important;
+}
+input{border:none;}
+input:focus {outline: none;}
+
+.field-error{
+    font-size:15px;
+    color:#dc3545;
+    border-color:#dc3545;
+}
+
+*{margin: 0px; padding: 0px; box-sizing: border-box;}
+
+nav{
+    /*
+    position:position;
+    */
+    z-index:2;
+    top:0; left:0; right:0;
+
+}
+
+.under_nav::before{
+    content:"";
+    position:absolute;
+    z-index: 1;
+    top:0; right:0; bottom:0; left:0;
+    background-color:rgba(0,0,0,0.5);
+    height:90vh;
+    top:55px;
+/*    display:flex;*/
+
+}
+
+body{
+    font-family:'Black Han Sans',sans-serif;
+    font-family:'Noto Serif KR',serif;
+}
+
+.under_nav{
+    display:flex;
+    justify-content:center;
+    background: url("../image/homeback.jpg") no-repeat center;
+    align-items:center;
+    height:90vh;
+    background-size:cover;
+    color:white;
+}
+
+.login-form{
+    position: relative;
+    z-index: 2;
+}
+
+.login-form h1{
+    font-size: 40px;
+    color: white;
+    text-align: center;
+    margin-bottom: 60px;
+}
+
+.input-number-password {
+    -webkit-text-security: disc;
+}
+
+.int_area{
+    width: 400px;
+    position: relative;
+    margin-top: 20px;
+}
+
+.int_area:first-child{margin-top: 0;}
+.int_area input{
+    width: 100%;
+    padding:20px 10px 10px;
+    background-color: transparent;
+    border: none;
+    border-bottom: 1px solid #999;
+    font-size:18px; color:#fff;
+    outline: none;
+}
+.int_area label{
+    position: absolute; left:10px; top:15px;
+    font-size: 15px; color:#999;
+    transition: all .5s ease;
+}
+
+.home_section{
+    position:relative;
+    z-index:2;
+    width:300px;
+    margin: auto ;
+}
+
+.btn_area button{
+    width:100%;
+    border: none;
+    height: 35px;
+    background-color: #125634;
+    color: #fff;
+    border-radius: 20px;
+    font-size: 17px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.my-page-dropdown .none_border{
+    border-top: none;
+    font-size:14px;
+}
+
+.my-page-dropdown .admin_none_border{
+    border-top: none;
+}
+
+.my-page-dropdown li{
+    color:black;
+    text-align: center;
+    border-top: 1px solid grey;
+    padding:8px;
+    margin-left:20px;
+    margin-right:20px;
+
+}
+
+.my-page-dropdown input{
+    text-align:center;
+    width:55px;
+    color:royalblue;
+}
+.my-page-dropdown .link{
+    color:royalblue;
+}
+
+
+
+.homebody h5{
+    margin-top:30px;
+    font-weight:700;
+    font-family:'Black Han Sans',sans-serif;
+    font-family:'Noto Serif KR',serif;
+
+
+}
+.homebody{
+    width:100%;
+    position:relative;
+    z-index:2;
+    background:white;
+
+}
+
+.homebody_ul{
+    list-style:none;
+      display:flex;
+                justify-content:center;
+}
+
+.homebody_ul li{
+float:left;
+margin-top:30px;
+margin-bottom:15px;
+margin-left:10px;
+margin-right:10px;
+
+}

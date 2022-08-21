@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="/refactor/layout/defaultLayout">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <th:block layout:fragment="css">
+        <script type="text/javascript" src="/js/number_comma.js"></script>
+        <link rel="stylesheet" href="/css/accountStyle.css?after">
+    </th:block>
+</head>
+<body>
+<th:block layout:fragment="content">
+    <form class="under_nav" action="/my_account/point_to_money" th:action th:object="${member}" method="post">
+        <div th:if="${message}!=null" th:class="home_section">
+            <p th:class="field-error" th:text="${message}"></p>
+            <div th:class="btn_area">
+                <button type="button" th:onclick="|location.href='@{/create_account}'|">계좌 생성하기</button>
+                <button type="button" th:onclick="|location.href='@{/}'|">홈으로</button>
+            </div>
+        </div>
+        <div th:if="${message}==null" class="account_section">
+            <h1>MY POINT</h1>
+                <table>
+                <tr>
+                    <td><name for="memberId">아이디 :</name></td>
+                    <td><input type="text" id="memberId" th:field="*{memberId}" readonly></td>
+                </tr>
+                <tr>
+                    <td><name for="accountId">계좌번호 :</name></td>
+                    <td><input type="text" id="accountId" th:field="*{accountId}" readonly></td>
+                </tr>
+                <tr>
+                    <td><name for="myPoint">내 포인트 :</name></td>
+                    <td><label for="myPoint">point</label>
+                        <input class="comma" type="text" id="myPoint" th:field="*{point}" readonly></td>
+                </tr>
+                <tr>
+                    <td><name for="changeMoney">전환 포인트 :</name></td>
+                    <td><label for="changeMoney">point</label>
+                        <input type="number" id="changeMoney" th:field="*{changeMoney}" th:errorclass="field-error"></td>
+                </tr>
+            </table>
+
+                <div th:if="${#fields.hasGlobalErrors()}">
+                    <p class="field-error" th:each="err:${#fields.globalErrors()}" th:text="${err}"></p>
+                </div>
+                <div class="field-error">
+                    <p th:errors="*{changeMoney}"></p>
+                </div>
+                <button type="button" th:onclick="|location.href='@{/}'|">HOME</button>
+                <button type="button" th:onclick="|location.href='@{/my_account}'|">내 계좌</button>
+                <button type="submit">현금으로 전환</button>
+        </div>
+    </form>
+</th:block>
+</body>
+</html>

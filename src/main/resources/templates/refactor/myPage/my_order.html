@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf/org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="/refactor/layout/defaultLayout">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <th:block layout:fragment="css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css" integrity="sha512-1sCRPdkRXhBV2PBLUdRb4tMg1w2YPf37qatUFeS7zlBy7jJI8Lf4VHwWfZZfpXtYSLy85pkm9GaYVYMfw5BC1A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+        <script type="text/javascript" src="/js/number_comma.js"></script>
+        <link rel="stylesheet" href="/css/my_order.css?after">
+    </th:block>
+</head>
+<body>
+<th:block layout:fragment="content">
+
+    <!-- 포인트
+     장바구니, 주문상태 조회 , 구매후기-->
+    <section id="cart_section" class="page-add cart-page-add">
+        <div class="container">
+            <div class="pageName col-lg-6">
+                <div class="page-breadcrumb">
+                    <h2>My Order</h2>
+                </div>
+            </div>
+            <div th:unless="${#lists.isEmpty(orderInfoList)}">
+                <div class="col-lg-10 offset-lg-1 text-left text-lg-right row" style="padding-top: 34px;">
+                    <div id="myOrderTable" th:each="orderInfo:${orderInfoList}">
+                        <div>
+                            <div class=" row align-items-center"  >
+                                <div class="col-md-3" align="center">
+                                    <img th:src="|/images/${orderInfo.getItemImgStoreName()}|" style="width:100%">
+                                </div>
+                                <div class="col-md-3">
+                                    <input type="text" class="itemName" th:name="${orderInfo.itemName}" th:value="${orderInfo.itemName}" readonly>
+                                    <input type="text" class="orderStatus" th:name="${orderInfo.orderStatus}" th:value="${orderInfo.orderStatus}" readonly>
+                                    <input type="text" class="regDate" th:value="${orderInfo.regDate}" readonly>
+                                </div>
+                                <div class="col-md-2">
+                                    <input type="number" class="orderAmount" th:name="${orderInfo.orderAmount}" th:value="${orderInfo.orderAmount}" style="width: 50px;" readonly>개
+                                </div>
+                                <div class="col-md-2">
+                                    <input class="comma" th:value="${orderInfo.orderPrice}" readonly>
+                                </div>
+                                <div class="col-md-2">
+                                    <input type="number" class="orderId" th:value="${orderInfo.orderId}" hidden>
+                                    <input type="number" class="itemId" th:value="${orderInfo.itemId}"hidden>
+                                    <button th:if="${#strings.equals(orderInfo.orderStatus,'주문완료')}"
+                                            class="delete_btn btn btn-outline-dark" onclick="deleteOrder(this)">주문 취소</button>
+                                    <button th:if="${#strings.equals(orderInfo.orderStatus,'배송완료')}"style="margin-top: 10px"
+                                            class="delete_btn btn btn-outline-dark" onclick="goItem(this)">리뷰 작성하러가기</button>
+                                </div>
+                            </div>
+                            <hr>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div th:if="${#lists.isEmpty(orderInfoList)}">
+                <div id="empty">
+                    <h4> 주문하신 상품이 없습니다. </h4>
+                </div>
+            </div>
+        </div>
+    </section>
+    <script type="text/javascript" src="/js/my_order.js"></script>
+</th:block>
+</body>
+</html>

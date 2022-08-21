@@ -1,0 +1,88 @@
+@import url('https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Noto+Serif+KR&display=swap');
+
+body{
+    font-family:'Black Han Sans',sans-serif;
+    font-family:'Noto Serif KR',serif;
+}
+
+input{outline: none;}
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+    transition: background-color 5000s; -webkit-text-fill-color: #fff !important;
+}
+
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+input{border:none;}
+input:focus {outline: none;}
+
+.delete_btn{border: none;outline: none;background:transparent;}
+
+#itemName{font-size: 18px;font-weight: bold;}
+.cart_item{margin: 20px;padding:10px;}
+.pageName{margin-top: 30px;}
+
+.th{
+    font-weight: bold;
+    text-align:center;
+    border-bottom:1px solid grey;
+    padding:10px;
+    margin-bottom:15px;
+}
+
+#empty{
+    display: flex;
+    align-items: center;
+    margin-top:50px;
+    margin-bottom:50px;
+    border:1px solid grey;
+    border-radius: 30px;
+    height:400px;
+}
+#empty h4{ width: 100%;padding: 20px 0px;text-align: center;color:gray;}
+
+
+#orderPage table td{
+    padding:20px;
+    width:280px;
+}
+#orderPage input{
+    border-bottom:1px solid black;
+    background:transparent;
+    text-align:center;
+}
+
+#orderPage table{
+    margin-left:auto;
+    margin-right:auto;
+    background:#f6f6f6;
+    border-radius:1rem;
+
+}
+#orderPage table p {
+    text-align: center;
+    font-weight: bold;
+}
+#orderPage table button{
+    margin-left:40%;
+}
+.name{
+    text-align:center;
+}
+#orderPage input{
+    width:200px;
+}
+#orderPrice{
+    border:none;
+}
+#orderPriceTh{
+    text-align:center;
+    font-weight: bold;
+    font-size: 17px;
+}

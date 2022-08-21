@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="/refactor/layout/defaultLayout">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <th:block layout:fragment="css">
+    <link rel="stylesheet" href="/css/accountStyle.css?after">
+    <style>
+        p{
+        font-size:12px;
+        color:white;
+        }
+    </style>
+    </th:block>
+</head>
+<body>
+<th:block layout:fragment="content">
+<form class="under_nav" action="" th:action th:object="${member}" method="post">
+    <div th:if="${message}!=null" th:class="home_section">
+        <p th:class="field-error" th:text="${message}"></p>
+        <div th:class="btn_area">
+            <button type="button" th:onclick="|location.href='@{/my_account}'|">내 계좌</button>
+            <button type="button" th:onclick="|location.href='@{/}'|">홈으로</button>
+        </div>
+    </div>
+        <div th:if="${message}==null" class="account_section">
+            <h1>계좌 생성</h1>
+            <table>
+                <tr>
+                    <td><name for="memberId">login ID : </name></td>
+                    <td><input type="text" id="memberId" name="memberId" th:value="${memberId}" readonly></td>
+                </tr>
+                <tr>
+                    <td><name for="memberPw" >login PW :</name></td>
+                    <td><input class="input-number-password" type="text" id="memberPw" name="memberPw" th:value="${memberPw}" th:errorclass="field-error">
+                        <div class="field-error" th:errors="*{memberPw}">loginPW 오류</div>
+                    </td>
+                </tr>
+                <tr>
+                    <td><name for="accountPw">accountPw :</name></td>
+                    <td><input class="input-number-password" type="number" id="accountPw" name="accountPw" th:value="${accountPw}" th:errorclass="field-error" required>
+                        <div class="field-error" th:errors="*{accountPw}">accountPw 오류</div>
+                    </td>
+                </tr>
+            </table>
+            <p>계좌번호(accountId)는 자동 생성됩니다.</p>
+            <div th:if="${#fields.hasGlobalErrors()}" >
+                <p class="field-error" th:each="err:${#fields.globalErrors()}" th:text="${err}"></p>
+            </div>
+            <button type="button" th:onclick="|location.href='@{/}'|">HOME</button>
+            <button type="submit">계좌 생성</button>
+        </div>
+    </form>
+</th:block>
+</body>
+</html>

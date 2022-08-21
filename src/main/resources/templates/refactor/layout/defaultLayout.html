@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html   lang="ko"
+        xmlns:th="http://www.thymeleaf.org"
+        xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head th:replace="/refactor/fragment/head ::headFragment" >
+    <meta charset="UTF-8">
+    <title layout:title-pattern="$LAYOUT_TITLE - $CONTENT_TITLE">Title</title>
+</head>
+<body>
+
+<!--[header] 영역 시작-->
+    <header th:replace="/refactor/fragment/header :: headerFragment"></header>
+<!--[header] 영역 끝-->
+
+<!--[content] 영역 시작-->
+<div layout:fragment="content"></div>
+<!--[content] 영역 끝-->
+
+<!--[footer] 영역 시작-->
+<footer th:replace="/refactor/fragment/footer :: footerFragment"></footer>
+<!--[footer] 영역 끝-->
+
+</body>
+</html>

@@ -1,0 +1,67 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="/refactor/layout/defaultLayout">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <th:block layout:fragment="css">
+    <link rel="stylesheet" href="/css/homeStyle.css?after">
+        <script type="text/javascript" src="/js/number_comma.js"></script>
+        <script>
+            function logoutCheck(){
+             if(confirm("로그아웃 하시겠습니까?") ==true){
+             return true;
+            }else{ return false;}
+            }
+        </script>
+    </th:block>
+</head>
+<body>
+<th:block layout:fragment="content">
+    <div class="under_nav">
+        <!--게시판 , 계좌 -->
+        <section class="home_section">
+            <h1>home</h1>
+            <p th:text="|welcome home ,${memberId} |">welcome home</p>
+            <div class="btn_area">
+                <button type="button" th:onclick="|location.href='/board'|"> BOARD</button>
+                <!--<button type="button" th:onclick="|location.href='/my_page'|">MY PAGE</button>-->
+                <!-- Default dropend button -->
+                <div th:unless="${ADMIN}" class="btn-group dropend" style="width:100%;">
+                    <button type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                        MY PAGE
+                    </button>
+                    <ul class="my-page-dropdown dropdown-menu">
+                        <!-- Dropdown menu links -->
+                        <li class="none_border">나의 포인트 <input class="comma" th:field="${myPageForm.point}">p</li>
+                        <li class="none_border">나의 계좌 잔액 <input class="comma" th:field="${myPageForm.accountMoney}">원</li>
+                        <li class="none_border"><p th:text="|${myPageForm.getCartItemAmount()} 개의 상품이 장바구니에 있습니다.|"></li>
+                        <li class="link"><p type="button" th:onclick="|location.href='/my_page/cart'|">장바구니</p></li>
+                        <li class="link"><p type="button" th:onclick="|location.href='/my_page/my_order'|">주문 상태 조회</p></li>
+                        <li class="link"><p type="button" th:onclick="|location.href='/my_account'|">내 계좌</p></li>
+                    </ul>
+                </div>
+                <div th:if="${ADMIN}"  class="btn-group dropend" style="width:100%;">
+                    <button type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                        Admin Page
+                    </button>
+                    <ul class="my-page-dropdown dropdown-menu">
+                        <!-- Dropdown menu links -->
+                        <li class="admin_none_border link"><p type="button" th:onclick="|location.href='@{/admin/product-enroll}'|">상품 등록</p></li>
+                        <li class="link"><p type="button" th:onclick="|location.href='@{/admin/customer-order}'|">고객 주문 내역</p></li>
+                    </ul>
+                </div>
+
+                <form th:action="@{/logout}" method="post" onsubmit="return logoutCheck()">
+                    <button type="submit">로그아웃</button>
+                </form>
+            </div>
+        </section>
+    </div>
+
+    <section th:replace="~{/refactor/fragment/relativeItem :: relativeItemFragment}"></section>
+
+</th:block>
+</body>
+</html>
