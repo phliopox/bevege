@@ -1,4 +1,4 @@
-package Jeong.jdbcRefactoring.Store.review;
+package Jeong.jdbcRefactoring.Store.Review;
 
 import Jeong.jdbcRefactoring.Store.ItemFileStore;
 import Jeong.jdbcRefactoring.Store.form.ReviewForm;

@@ -1,6 +1,5 @@
 package Jeong.jdbcRefactoring.Login;
 
-import Jeong.jdbcRefactoring.DTO.Member;
 import lombok.Data;
 
 import javax.validation.constraints.NotBlank;

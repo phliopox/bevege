@@ -1,11 +1,13 @@
-package Jeong.jdbcRefactoring.Store.review;
+package Jeong.jdbcRefactoring.Store.Review;
 
 import Jeong.jdbcRefactoring.Store.form.ReviewForm;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
 @Service
+@Transactional
 public class ReviewService {
 
     private final ReviewRepository reviewRepository;

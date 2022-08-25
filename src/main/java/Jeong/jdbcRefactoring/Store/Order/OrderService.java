@@ -1,7 +1,7 @@
 package Jeong.jdbcRefactoring.Store.Order;
 
-import Jeong.jdbcRefactoring.Account.AccountService2;
-import Jeong.jdbcRefactoring.DTO.Member;
+import Jeong.jdbcRefactoring.Account.AccountService;
+import Jeong.jdbcRefactoring.Member;
 import Jeong.jdbcRefactoring.Store.Cart.CartService;
 import Jeong.jdbcRefactoring.Store.Item.ItemService;
 import lombok.extern.slf4j.Slf4j;
@@ -17,11 +17,11 @@ import java.util.Map;
 public class OrderService {
 
     private final OrderRepository orderRepository;
-    private final AccountService2 accountService;
+    private final AccountService accountService;
     private final ItemService itemService;
     private final CartService cartService;
 
-    public OrderService(OrderRepository orderRepository, AccountService2 accountService, ItemService itemService, CartService cartService) {
+    public OrderService(OrderRepository orderRepository, AccountService accountService, ItemService itemService, CartService cartService) {
         this.orderRepository = orderRepository;
         this.accountService = accountService;
         this.itemService = itemService;
@@ -30,8 +30,15 @@ public class OrderService {
 
     public PaymentInfo getPaymentInfo(String memberId){
         Member accountInfo = accountService.getAccountInfo(memberId);
-        PaymentInfo pf = new PaymentInfo(accountInfo.getMoney(), accountInfo.getPoint());
-        return pf;
+        PaymentInfo pf;
+        if(accountInfo!=null) {
+             pf = new PaymentInfo(accountInfo.getMoney(), accountInfo.getPoint());
+            /*pf account없을시 오류발생 !!! */
+        }else{
+            pf=new PaymentInfo(0,0);
+        }
+
+            return pf;
     }
     public void orderItem(Map<String,Object> param,String memberId){
 

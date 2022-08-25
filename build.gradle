@@ -39,8 +39,8 @@ dependencies {
 	/*타임리프 레이아웃*/
 	implementation 'nz.net.ultraq.thymeleaf:thymeleaf-layout-dialect'
 
-	/*json라이브러리*/
-	implementation group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.13.1'
+//	/*json라이브러리*/
+//	implementation group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.13.1'
 
 }
 

@@ -1,6 +1,5 @@
 package Jeong.jdbcRefactoring.Store;
 
-import Jeong.jdbcRefactoring.Store.form.ReviewImgForm;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;

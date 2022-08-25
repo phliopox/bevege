@@ -1,26 +1,19 @@
 package Jeong.jdbcRefactoring.Join;
 
-import Jeong.jdbcRefactoring.DTO.Member;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.dao.DuplicateKeyException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
-import org.springframework.jdbc.support.JdbcUtils;
-import org.springframework.jdbc.support.SQLErrorCodeSQLExceptionTranslator;
-import org.springframework.jdbc.support.SQLExceptionTranslator;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.sql.DataSource;
 import java.sql.*;
 import java.util.List;
-import java.util.NoSuchElementException;
 
-/**
- * duplicatedKeyException throw
- * SQL -> RUNTIME throw
- */
+
 @Slf4j
 @Repository
+@Transactional
 public class JointRepository {
 
 

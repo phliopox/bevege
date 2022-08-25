@@ -1,7 +1,5 @@
-package Jeong.jdbcRefactoring.DTO;
+package Jeong.jdbcRefactoring;
 
-import Jeong.jdbcRefactoring.Join.JoinForm;
-import Jeong.jdbcRefactoring.Login.LoginForm;
 import lombok.Data;
 
 

@@ -6,7 +6,7 @@ import Jeong.jdbcRefactoring.Account.form.ChangePointForm;
 import Jeong.jdbcRefactoring.Account.form.CreateAccountForm;
 import Jeong.jdbcRefactoring.Account.form.TransferMoneyForm;
 import Jeong.jdbcRefactoring.AccountConst;
-import Jeong.jdbcRefactoring.DTO.Member;
+import Jeong.jdbcRefactoring.Member;
 import Jeong.jdbcRefactoring.SessionConst;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
@@ -27,9 +27,9 @@ import java.util.Map;
 @Controller
 public class AccountController {
 
-    private final AccountService2 accountService;
+    private final AccountService accountService;
 
-    public AccountController(AccountService2 accountService) {
+    public AccountController(AccountService accountService) {
         this.accountService = accountService;
 
     }

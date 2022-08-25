@@ -55,7 +55,5 @@ public class HomeController {
 
         return "refactor/login/loginHome";
     }
-
-
 }
 

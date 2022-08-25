@@ -1,7 +1,5 @@
 package Jeong.jdbcRefactoring.Join;
 
-import Jeong.jdbcRefactoring.DTO.Member;
-import org.springframework.dao.DuplicateKeyException;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;

@@ -50,7 +50,7 @@ function reviewListAjax(){
 function reviewEnroll(){
     let reviewContent="";
     reviewContent +="<div id='review_table' style='width:60%; margin-left:40%;'>";
-    reviewContent +="<input type='text' name='reviewTitle' id='reviewTitle' style=\"margin-top:15px; margin-bottom:15px; width:100%;\">";
+    reviewContent +="<input type='text' name='reviewTitle' id='reviewTitle' style=\"margin-top:15px; margin-bottom:15px; width:100%;\" required>";
     reviewContent += "<textarea id='classic' style=\"padding:20px; margin-top:5px; width:100%; border:1px solid black;\"></textarea>";
     reviewContent +="<button id='submit' style='margin-top:10px;' class=\"col-md-3 btn btn-outline-dark\" onclick='reviewSubmit()'>리뷰 등록</button>"
     reviewContent +="<button style='margin-top:10px;' class=\"col-md-3 btn btn-outline-dark\" onclick='reviewListAjax()'>목록으로</button>";
@@ -104,12 +104,6 @@ function reviewDetail(e){
     console.log(e);
     let value = e.querySelector("#reviewValue").value;
 
-
-   /* let decoding = content.replace(/&lt;/g, "<");
-    let result = decoding.replace(/&gt;/g, ">");
-    console.log(result);
-    // $(this).after("<tr>"+result+"</tr>");
-*/
     let reviewContent = "";
     reviewContent += "<div id='review_table' style='width:50%; margin-left:50%;'>";
     reviewContent += "<div id='valueJs'>"+value+"</div>"

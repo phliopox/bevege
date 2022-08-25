@@ -1,0 +1,17 @@
+@import url('https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Noto+Serif+KR&display=swap');
+
+body{
+    font-family:'Black Han Sans',sans-serif;
+    font-family:'Noto Serif KR',serif;
+}
+
+#errorPage{
+    margin-top:80px;
+    min-height: 500px;
+}
+#errorPage h2{
+    margin-bottom: 40px;
+}
+#errorPage button{
+    margin-top: 50px;
+}

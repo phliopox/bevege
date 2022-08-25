@@ -1,11 +1,13 @@
 package Jeong.jdbcRefactoring.Login;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.HashMap;
 import java.util.Map;
 
 @Service
+@Transactional
 public class LoginService {
 
     private final LoginRepository loginRepository;

@@ -1,9 +1,6 @@
 package Jeong.jdbcRefactoring.Store;
 
 import lombok.Data;
-
-import java.util.List;
-
 @Data
 public class UploadFile {
     private String uploadFileName ;

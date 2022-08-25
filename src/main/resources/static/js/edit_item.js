@@ -4,7 +4,7 @@ function imageEdit(){
     tr+="<td><input type='file' id='mainImage' name='mainImage' required></td></tr>"
     tr += "<tr id='contentImageTr'><th><label for=\"contentImageFiles\">내용 이미지 파일 첨부</label></th>";
     tr +="<td><input type='file' id='contentImageFiles' name='contentImageFiles' required></td></tr>"
-    tr +="<tr id='cancelBtn'><td colspan='2' style='text-align: center'><button type='button' class='btn btn-secondary' onclick='cancel()' >이미지 수정 취소</button></td></tr>"
+    tr +="<tr id='cancelBtn'><td colspan='2' style='text-align: center'><p>파일 첨부 용량은 최대 10MB입니다</p><button type='button' class='btn btn-secondary' onclick='cancel()' >이미지 수정 취소</button></td></tr>"
     $("#imageEditBtn").replaceWith(tr);
 
 }

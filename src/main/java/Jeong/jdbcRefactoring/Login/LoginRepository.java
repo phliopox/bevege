@@ -1,24 +1,15 @@
 package Jeong.jdbcRefactoring.Login;
 
 
-import Jeong.jdbcRefactoring.DTO.Member;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
-import org.springframework.jdbc.support.JdbcUtils;
-import org.springframework.jdbc.support.SQLErrorCodeSQLExceptionTranslator;
-import org.springframework.jdbc.support.SQLExceptionTranslator;
 import org.springframework.stereotype.Repository;
 
 import javax.sql.DataSource;
-import java.sql.*;
 import java.util.List;
-import java.util.NoSuchElementException;
 
 
-/**
- * NoSuchElementException throw
- * SQL ->RunTime throw
- */
+
 @Repository
 public class LoginRepository {
 

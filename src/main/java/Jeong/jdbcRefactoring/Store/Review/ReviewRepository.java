@@ -1,4 +1,4 @@
-package Jeong.jdbcRefactoring.Store.review;
+package Jeong.jdbcRefactoring.Store.Review;
 
 import Jeong.jdbcRefactoring.Store.form.ReviewForm;
 import org.springframework.jdbc.core.JdbcTemplate;
